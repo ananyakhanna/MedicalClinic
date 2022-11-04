@@ -1,0 +1,41 @@
+from django.core.mail import send_mail
+
+#send an email
+send_mail(
+
+	'Appointment Request for' + name, # subject
+	'message',# message
+	email ,# from email
+	['ananyakhanna2602@gmail.com', ''],# to email
+
+)
+
+#settings.py
+
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = '1025'
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = False
+
+#command promt virtual env
+
+python -m smtpd -n -c DebuggingServer localhost:1025
+
+#professional
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = '587'
+EMAIL_HOST_USER = 'ananyakhanna2602@gmail.com'
+EMAIL_HOST_PASSWORD = 'imfine2602'
+EMAIL_USE_TLS = True
+
+# less secure apps for gmail
+# displayunlockcaptcha
+
+#two factor authentication, set an app, use that password instead of a real one
+
+#apppaswords
+
+

@@ -1,0 +1,162 @@
+{% extends 'base_doctor.html' %}
+{% block style %}
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+    }
+
+    body {
+        background: url('../static/Images/mc1.jpg') no-repeat center/cover;
+        background-attachment: fixed;
+    }
+
+    .container {
+        max-width: 70rem;
+        margin: 5rem auto;
+    }
+
+    .box {
+        background-color: rgba(0, 0, 0, 0.5);
+        width: auto;
+        /* font-size: xx-large; */
+        border-radius: 15px;
+        color: #fff;
+        padding: 3rem;
+        /* padding-top: 4rem;
+            padding-bottom: 5rem; */
+    }
+
+
+    label {
+        font-size: x-large;
+        font-family: sans-serif;
+        font-style: italic;
+        margin-bottom: 1rem;
+    }
+
+    .input {
+        display: block;
+        background-color: rgba(0, 0, 0, 0.5);
+        border: 1px solid gray;
+        border-radius: 10px;
+        height: 3rem;
+        color: #fff;
+        font-size: large;
+        width: 100%;
+        margin-bottom: 2rem;
+    }
+
+    .checkbox {
+        height: 1rem;
+        width: 3rem;
+        display: inline;
+    }
+
+    .checkbox:hover {
+        cursor: pointer;
+    }
+
+    /* .container {
+        border: 2px solid red;
+        height: 20rem;
+        width: 100%;
+        margin: auto;
+    } */
+
+    /* .item1 {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    } */
+
+    .button {
+        display: grid;
+        margin-top: 2rem;
+    }
+
+    .btn {
+        margin-top: 3rem;
+        margin-top: 3rem;
+        width: 10rem;
+        margin: auto;
+        height: 3rem;
+    }
+
+    .btn:hover {
+        cursor: pointer;
+        background-color: rgba(0, 0, 46, 0.815);
+    }
+
+    .item {
+        color: #fff;
+
+    }
+
+    .each-card {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+</style>
+{% endblock %}
+{% block title %}
+Search Patient
+{% endblock %}
+
+{% block content %}
+<section>
+    <div class="container">
+        <div class="box">
+
+            <form action="{% url 'search_patient' %}" method="POST">
+                {% csrf_token %}
+                <div class="item1">
+                    <label for="">Search Patient Name: </label>
+                    <input type="search" name="name_search" class="input">
+                </div>
+                <div class="item1">
+                    <label for="">Appointment date min: </label>
+                    <input type="date" name="date_min" class="input">
+                </div>
+                <div class="item1">
+                    <label for="">Appointment date max: </label>
+                    <input type="date" name="date_max" class="input">
+                </div>
+                <div class="item1">
+                    <input type="checkbox" name="bill_generated" class="checkbox">
+                    <label for="">Bill generated</label>
+                </div>
+                <div class="button">
+                    <input type="submit" value="Submit" class="btn input">
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+<hr>
+<!--Search Results-->
+<div class="container">
+    <div class="box">
+
+        {% for patient in queryset %}
+        <hr>
+        <div class="each-card">
+
+            <div class="item"><span>Name: {{patient.user.first_name}}</span></div>
+            <div class="item"><span>Contact number: {{patient.contactno}}</span></div>
+            <div class="item"><span>Service: {{patient.services}}</span></div>
+            <div class="item"><span>Email: {{patient.email}}</span></div>
+            <div class="item"><span>Appointment Date: {{patient.date}}</span></div>
+            <div class="item"><span>Bill generated: {{patient.bill_generated}}</span></div>
+        </div>
+
+        <hr>
+
+        {% endfor %}
+    </div>
+</div>
+<section>
+
+</section>
+
+{% endblock %}

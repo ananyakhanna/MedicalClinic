@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block link %}{% endblock %}
+    <link rel="stylesheet" href="../static/css/stylePatient.css">
+    {% block style %}
+    {% endblock %}
+    <title>{% block title %}Medical Clinic{% endblock %}</title>
+</head>
+
+<body>
+    <header>
+        <h3 class="heading"><a href="patienthome.html">Medical Clinic</a> </h3>
+        <nav class="navbar sticky">
+            <ul class="nav_links">
+                <li> <a href="patienthome.html" class="navbar_a">Home</a> </li>
+                <li> <a href="appointment.html" class="navbar_a">Form</a></li>
+                <li> <a href="patientstatus.html"class="navbar_a">Status</a></li>
+                <li> <a href="mcq_test.html" class="navbar_a">Test</a></li>
+                <li> <a href="patientprofile.html" class="navbar_a">Profile</a></li>
+            </ul>
+        </nav>
+        <button class="logout_button">
+            <a href="{% url 'logout' %}" id="logout_a">Log-out</a>
+        </button>
+    </header>
+
+    {% block content %}
+
+    {% endblock %}
+</body>
+
+</html>

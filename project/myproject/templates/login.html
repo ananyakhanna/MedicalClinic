@@ -1,0 +1,202 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/styleAlert.css">
+    <title>Login page</title>
+    <!-- CSS only -->
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+        }
+
+        body {
+            background: url('../static/Images/mc1.jpg') no-repeat center/cover;
+            background-attachment: fixed;
+        }
+
+        .container {
+            max-width: 30rem;
+            margin: 10rem 3rem;
+        }
+
+        .box {
+            background-color: rgba(0, 0, 0, 0.5);
+            width: 100%;
+            /* font-size: xx-large; */
+            border-radius: 15px;
+            color: #fff;
+            padding: 2rem;
+            /* padding-top: 4rem;
+            padding-bottom: 5rem; */
+        }
+
+        .heading {
+            color: #fff;
+            text-align: center;
+            text-decoration: underline;
+        }
+
+        label {
+            margin-top: 1rem;
+            font-size: larger;
+            font-family: sans-serif;
+            font-style: italic;
+        }
+
+        input {
+            margin-top: 0.5rem;
+            margin-bottom: 1rem;
+            display: block;
+            background-color: rgba(0, 0, 0, 0.5);
+            border: 1px solid gray;
+            border-radius: 10px;
+            height: 2rem;
+            color: #fff;
+            font-size: medium;
+            width: 100%;
+        }
+
+        .button {
+            display: grid;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            margin-top: 3rem;
+            margin-top: 3rem;
+            width: 10rem;
+            margin: auto;
+            height: 3rem;
+        }
+
+        .btn:hover {
+            cursor: pointer;
+            background-color: rgba(0, 0, 46, 0.815);
+        }
+
+        .captcha {
+            border-radius: 10px;
+            margin-left: 1rem;
+            margin-top: 2rem;
+            background-color: rgba(255, 255, 255, 0.525);
+        }
+
+        /* The alert message box */
+
+        .containerAlert{
+            max-width: 50rem;
+            margin: auto;
+            margin-top: 1rem;
+        }
+
+        .alert {
+            padding: 0.5rem;
+            background-color: rgba(145, 1, 1, 0.5);
+            border-radius: 5px;
+            color: white;
+            margin-bottom: 15px;
+            height: 1.6rem;
+            font-size: larger;
+            width: 100%;
+        }
+
+        /* The close button */
+        .closebtn {
+            margin-left: 15px;
+            color: white;
+            font-weight: bold;
+            float: right;
+            font-size: 22px;
+            line-height: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        /* When moving the mouse over the close button */
+        .closebtn:hover {
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- {% if form.errors %}
+    <ul>
+        {% for error in form.errors %}
+        <li>{{ error }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %} -->
+    {% for message in messages %}
+    <div class="containerAlert">
+        <div class="alert">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            {{message}}
+        </div>
+        {% endfor %}
+    </div>
+
+
+    <div class="container">
+        <div class="box">
+            <h1 class="heading">Log In</h1>
+            <form action="{% url 'login_view' %}" method="POST" novalidate>
+                {% csrf_token %}
+                <div class="item">
+                    <div class="label">
+                        <label>Username:</label>
+                    </div>
+                    <div class="input">
+                        <input type="text" name="username" class="">
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="label">
+                        <label>Password:</label>
+                    </div>
+                    <div class="input">
+                        <input type="password" name="password" class="">
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="label">
+                        <label for="">Captcha: </label>
+                    </div>
+                    <canvas id="myCanvas" width="150" height="50" style="border:1px solid #000000;" class="captcha">
+                    </canvas> 
+                    <div class="input">
+                        <input type="text" name="captcha">
+                    </div>
+                </div>
+                <!-- <div class="item">
+                    {{captcha.captcha}}
+                </div> -->
+                <!-- <div class="g-recaptcha captcha" data-sitekey="6LcsIvUhAAAAAM1qg92o7XpFZ9qqCgRaIvEllx6u"></div> -->
+                <div class="button">
+                    <input type="submit" value="Log In" class="btn">
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        var canvas = document.getElementById("myCanvas");
+        var ctx = canvas.getContext("2d");
+        ctx.font = "30px Comic Sans MS";
+        ctx.fillStyle = "red";
+        ctx.fillAlign = "center";
+        ctx.fillText("{{captcha}}", 42, 35);
+    </script>
+    <!-- <script src="https://www.google.com/recaptcha/api.js" async defer></script> -->
+
+</body>
+
+</html>

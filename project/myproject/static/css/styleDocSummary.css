@@ -1,0 +1,45 @@
+body {
+    box-sizing: border-box;
+    padding: 0;
+}
+
+.container {
+    padding: 2rem;
+    margin: 2rem;
+    /* border: 2px solid red; */
+    background-color: white;
+}
+
+.item {
+    /* border: 2px solid red; */
+    margin: 2rem;
+}
+
+.submit {
+    background-color: black;
+    color: white;
+    height: 2rem;
+    margin: auto;
+    width: 10%;
+}
+
+.submit_div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border: 3px solid green; */
+}
+
+.submit:hover {
+    cursor: pointer;
+    background-color: rgb(48, 48, 48);
+}
+
+.input {
+    height: 3rem;
+    border: 2px solid rgba(0, 0, 0, 0.179);
+    display: block;
+    width: 95%;
+    margin: 20px;
+    font-size: medium;
+}

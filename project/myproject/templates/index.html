@@ -1,0 +1,19 @@
+{% extends 'base_doctor.html' %}
+{% block style %}
+<style>
+    body {
+        background: url('../static/Images/mc2.jpg') no-repeat center/cover;
+        background-attachment: fixed;
+    }
+</style>
+{% endblock %}
+{% block content %}
+<section>
+    <!-- <img src="../static/Images/mc3.jpg" alt="error" class="img1"> -->
+</section>
+
+{% for message in messages %}
+<h3>{{message}}</h3>
+{% endfor %}
+
+{% endblock %}

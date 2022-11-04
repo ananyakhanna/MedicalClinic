@@ -1,0 +1,256 @@
+{% extends 'base_patient.html' %}
+{% block link %}
+{% endblock %}
+{% block style %}
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+    }
+
+    body {
+        background: url('../static/Images/mc1.jpg') no-repeat center/cover;
+        background-attachment: fixed;
+    }
+
+    .container {
+        max-width: 50rem;
+        margin: 5rem auto;
+    }
+
+    .box {
+        background-color: rgba(0, 0, 0, 0.5);
+        width: auto;
+        /* font-size: xx-large; */
+        border-radius: 15px;
+        color: #fff;
+        padding: 3rem;
+        /* padding-top: 4rem;
+            padding-bottom: 5rem; */
+    }
+
+    .heading1 {
+        color: yellow;
+        text-align: center;
+        text-decoration: underline;
+        margin-bottom: 2rem;
+    }
+
+    .question {
+        font-size: x-large;
+        font-family: sans-serif;
+        font-style: italic;
+        margin-bottom: 1rem;
+    }
+
+    .answer {
+        /* background-color: rgba(0, 0, 0, 0.5); */
+        border: 1px solid gray;
+        border-radius: 10px;
+        height: 3rem;
+        color: #fff;
+        font-size: large;
+        width: 100%;
+        margin-bottom: 2rem;
+        display: grid;
+        grid-template-columns: 50% 50%;
+        padding-top: 0.5rem;
+    }
+
+    .answer_input {
+        padding-left: 17rem;
+        /* border: 1px solid white; */
+
+    }
+
+    .button {
+        display: grid;
+        margin-top: 2rem;
+    }
+
+    .btn {
+        background-color: rgba(0, 0, 0, 0.5);
+        margin-top: 3rem;
+        margin-top: 3rem;
+        width: 10rem;
+        margin: auto;
+        height: 3rem;
+        border-radius: 10px;
+        color: white;
+        font-size: large;
+
+    }
+
+    .btn:hover {
+        cursor: pointer;
+        background-color: rgba(0, 0, 46, 0.815);
+    }
+
+    .btn-appointment {
+        border: 1px solid gray;
+        border-radius: 2px;
+        background-color: white;
+        padding: 5px 5px;
+        margin: auto;
+        display: table;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-weight: bold;
+    }
+
+    .status_a {
+        text-decoration: none;
+        color: black;
+    }
+
+    /* The alert message box */
+    .containerAlert {
+        max-width: 50rem;
+        margin: auto;
+        margin-top: 1rem;
+    }
+
+    .alert {
+        padding: 0.5rem;
+        background-color: rgba(1, 145, 1, 0.5);
+        border-radius: 5px;
+        color: white;
+        margin-bottom: 15px;
+        height: 2.5rem;
+        font-size: larger;
+        width: 100%;
+    }
+
+    /* The close button */
+    .closebtn {
+        margin-left: 15px;
+        color: white;
+        font-weight: bold;
+        float: right;
+        font-size: 22px;
+        line-height: 20px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    /* When moving the mouse over the close button */
+    .closebtn:hover {
+        color: black;
+    }
+</style>
+{% endblock %}
+{% block title %}
+MCQ Test
+{% endblock %}
+
+{% block content %}
+
+{% if count %}
+<div class="containerAlert">
+    <div class="alert">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        Your score is: {{count}}/6. &nbsp;
+        {% if count >= 4 %}
+        <span>You are Doing Good!</span>
+        {% else %}
+        <span>You need to take care of your health! &nbsp; &nbsp; &nbsp;<button style="display: inline;" type="submit" class="btn-appointment"><a href="appointment.html" class="status_a">Book an Appointment</a></button></span>
+        {% endif %}
+    </div>
+</div>
+{% endif %}
+
+
+<div class="container">
+    <div class="box">
+        <h1 class="heading1">Health Check Up Test</h1>
+
+        <form action="{% url 'mcq_test' %}" method="POST">
+            {% csrf_token %}
+            <div class="item">
+                <div class="question"><span>Do you feel that your pain is intense ?</span></div>
+                <div class="answer">
+                    <div>
+                        <input type="radio" name="answer1" value="Yes">
+                        <span class="detail">&nbsp;Yes</span>
+                    </div>
+                    <div class="answer_input">
+                        <input type="radio" name="answer1" value="No">
+                        <span class="detail">&nbsp;No</span>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="question"><span>Do you wake up feeling rested ?</span></div>
+                <div class="answer">
+                    <div>
+                        <input type="radio" name="answer2" value="Yes">
+                        <span class="detail">&nbsp;Yes</span>
+                    </div>
+                    <div class="answer_input">
+                        <input type="radio" name="answer2" value="No">
+                        <span class="detail">&nbsp;No</span>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="question"><span>Do you feel stressed out ?</span></div>
+                <div class="answer">
+                    <div>
+                        <input type="radio" name="answer3" value="Yes">
+                        <span class="detail">&nbsp;Yes</span>
+                    </div>
+                    <div class="answer_input">
+                        <input type="radio" name="answer3" value="No">
+                        <span class="detail">&nbsp;No</span>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="question"><span>Are you able to do get out of bed ?</span></div>
+                <div class="answer">
+                    <div>
+                        <input type="radio" name="answer4" value="Yes">
+                        <span class="detail">&nbsp;Yes</span>
+                    </div>
+                    <div class="answer_input">
+                        <input type="radio" name="answer4" value="No">
+                        <span class="detail">&nbsp;No</span>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="question"><span>Are you able to do your everyday tasks ?</span></div>
+                <div class="answer">
+                    <div>
+                        <input type="radio" name="answer5" value="Yes">
+                        <span class="detail">&nbsp;Yes</span>
+                    </div>
+                    <div class="answer_input">
+                        <input type="radio" name="answer5" value="No">
+                        <span class="detail">&nbsp;No</span>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="question"><span>Are you able to do your job/go to school/go to college ?</span></div>
+                <div class="answer">
+                    <div>
+                        <input type="radio" name="answer6" value="Yes">
+                        <span class="detail">&nbsp;Yes</span>
+                    </div>
+                    <div class="answer_input">
+                        <input type="radio" name="answer6" value="No">
+                        <span class="detail">&nbsp;No</span>
+                    </div>
+                </div>
+            </div>
+            <div class="button">
+                <input type="submit" value="Submit" class="btn">
+            </div>
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}

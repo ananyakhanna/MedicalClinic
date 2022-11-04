@@ -1,0 +1,37 @@
+{% extends 'base_doctor.html' %}
+{% block title %}Doctor Summary{% endblock %}
+{% block link %}
+    <!-- <link rel="stylesheet" href="../static/css/styleForm_ipreg.css"> -->
+    <link rel="stylesheet" href="../static/css/styleDocSummary.css">
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <form action="{% url 'doctor_summary' %}" method="POST">
+            {% csrf_token %}
+            <div class="item">
+                <!-- <label>Illness:</label> -->
+                <input type="text" name="illness" class="input" placeholder="ILLNESS" required></textarea>
+            </div>
+            <div class="item">
+                <!-- <label> Medication:</label>  -->
+                <input type="text" name="medication" class="input" placeholder="MEDICATION" required>
+                <!-- <label >Dosage: </label> -->
+            </div>
+            <div class="item">
+                <input type="text" name="dosage" class="input" placeholder="DOSAGE" required>
+            </div>
+            <div class="item">
+                <!-- <label>Vaccination(if any): </label> -->
+                <input type="text" name="vaccination" class="input" placeholder="VACCINATION" required>
+            </div>
+            <div class="item">
+                <!-- <label>Treatment Notes: </label> -->
+                <input type="text" name="note" class="input" placeholder="TREATMENT NOTE" required>
+            </div>
+            <div class="item submit_div">
+                <button type="submit" class="submit" href="?uid={{appointments.id}}">Submit</button>
+                <input type="hidden" name="userid" value="{{userid}}">
+            </div>
+        </form>
+    </div>
+{% endblock %}

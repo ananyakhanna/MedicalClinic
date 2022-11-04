@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
+
+    <title>Doctor Register</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background: url('../static/Images/mc1.jpg') no-repeat center/cover;
+            background-attachment: fixed;
+        }
+
+        .container{
+            max-width: 70rem;
+            margin: 5rem auto;
+        }
+
+        .heading{
+            color: #fff;
+            text-align: center;
+            text-decoration: underline;
+        }
+
+        .box {
+            background-color: rgba(0, 0, 0, 0.5);
+            width: auto;
+            /* font-size: xx-large; */
+            border-radius: 15px;
+            color: #fff;
+            padding: 3rem;
+            /* padding-top: 4rem;
+            padding-bottom: 5rem; */
+        }
+        p{
+            padding: 0.5rem;
+            margin: 0.5rem;
+        }
+
+        label {
+            font-size: larger;
+            font-family: sans-serif;
+            font-style: italic;
+        }
+
+        input {
+            display: block;
+            background-color: rgba(0, 0, 0, 0.5);
+            border: 1px solid gray;
+            border-radius: 10px;
+            height: 2rem;
+            color: #fff;
+            font-size: medium;
+            width: 100%;
+        }
+        .helptext{
+            display: block;
+            margin-top: 0.2rem;
+            margin-left: 1rem;
+        }
+        ul{
+            list-style: none;
+            margin-left: 2rem;
+        }
+
+        .button{
+            display: grid;
+            margin-top: 2rem;
+        }
+        .btn{
+            margin-top: 3rem;
+            margin-top: 3rem;
+            width: 10rem;
+            margin: auto;
+            height: 3rem;
+        }
+
+        .btn:hover{
+            cursor: pointer;
+            background-color: rgba(0, 0, 46, 0.815);
+        }
+        .captcha{
+            border-radius: 10px;
+            margin-left: 3rem;
+            margin-top: 2rem;
+            height: 5rem;
+        }
+
+        .errorlist{
+            color: red;
+        }
+        select{
+            display: block;
+            background-color: rgba(0, 0, 0, 0.5);
+            border: 1px solid gray;
+            border-radius: 10px;
+            height: 2rem;
+            color: #fff;
+            font-size: medium;
+            width: 100%;
+        }
+        /* The alert message box */
+
+        .containerAlert {
+            max-width: 50rem;
+            margin: auto;
+            margin-top: 1rem;
+        }
+
+        .alert {
+            padding: 0.5rem;
+            background-color: rgba(145, 1, 1, 0.5);
+            border-radius: 5px;
+            color: white;
+            margin-bottom: 15px;
+            height: 1.6rem;
+            font-size: larger;
+            width: 100%;
+        }
+
+        /* The close button */
+        .closebtn {
+            margin-left: 15px;
+            color: white;
+            font-weight: bold;
+            float: right;
+            font-size: 22px;
+            line-height: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        /* When moving the mouse over the close button */
+        .closebtn:hover {
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+    {% for message in messages %}
+    <div class="containerAlert">
+        <div class="alert">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            {{message}}
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="container">
+        <div class="box">
+            <h1 class="heading">Register</h1>
+            <form action="{% url 'doctor_register' %}" method="POST" novalidate>
+                {% csrf_token %}
+
+                {{form.as_p}}
+
+                <!-- <div class="g-recaptcha captcha" data-sitekey="6LcsIvUhAAAAAM1qg92o7XpFZ9qqCgRaIvEllx6u"></div> -->
+                <div class="button">
+                    <input type="submit" value="Register" class="btn">
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- <script src="https://www.google.com/recaptcha/api.js" async defer></script> -->
+
+</body>
+
+</html>

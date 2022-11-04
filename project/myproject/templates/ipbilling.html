@@ -1,0 +1,72 @@
+{% extends 'base_doctor.html' %}
+{% block content %}
+{% block link %}
+<link rel="stylesheet" href="../static/css/styleForm_ipbilling.css">
+{% endblock %}
+
+<section class="form"></section>
+<div class="container">
+    <div class="title">Inpatient Billing</div>
+    
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div class="user-details">
+            
+            <div class="input-box">
+                <span class="details">Bill number: </span>
+                <input type="number" name="billNo" placeholder="Enter Bill number" required>
+            </div>
+            
+            <div class="input-box">
+                <span class="details">Patient ID: </span>
+                <input type="number" name="patientID" placeholder="Enter Patient ID" required>
+            </div>
+            
+            <div class="input-box">
+                <span class="details">Patient Name: </span>
+                <input type="text" name="name" placeholder="Enter Name" required>
+            </div>
+            
+                <div class="input-box">
+                    <span class="details">Age: </span>
+                    <input type="number" name="age" placeholder="Enter age" required>
+                </div>
+
+                <div class="input-box">
+                    <span class="details">Date of Admission: </span>
+                    <input type="date" name="doa" placeholder="" required>
+                </div>
+                
+                <div class="input-box">
+                    <span class="details">Date of Discharge: </span>
+                    <input type="date" name="dod" placeholder="" required>
+                </div>
+                
+                <div class="input-box" id="gender">
+                    <span class="details">Gender:&nbsp&nbsp&nbsp</span>
+                    <span class="details">Non-binary:</span>
+                    <input type="radio" name="gender" value="Non-binary">
+                    <span class="details">Binary:</span>
+                    <input type="radio" name="gender" value="Binary">
+                </div>
+                
+                <div class="input-box">
+                    <span class="details">Room charges: </span>
+                    <input type="number" name="roomCharge" placeholder="Enter room charges" required>
+                </div>
+                
+                <div class="input-box">
+                    <span class="details">Doctor's Fees: </span>
+                    <input type="number" name="docFees" placeholder="Enter Doctor's Fees" required>
+                </div>
+
+                <div class="button">
+                    <button class="btn">Submit</button>
+                </div>
+                
+            </div>
+        </form>
+    </div>
+    </section>
+
+    {% endblock %}

@@ -1,0 +1,107 @@
+{% extends 'base_patient.html' %}
+{% block style %}
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+    }
+
+    body {
+        background: url('../static/Images/mc1.jpg') no-repeat center/cover;
+        background-attachment: fixed;
+    }
+
+    .container {
+        max-width: 50rem;
+        margin: 5rem auto;
+    }
+
+    .box {
+        background-color: rgba(0, 0, 0, 0.5);
+        width: auto;
+        /* font-size: xx-large; */
+        border-radius: 15px;
+        color: #fff;
+        padding: 3rem;
+        /* padding-top: 4rem;
+        padding-bottom: 5rem; */
+    }
+
+    table {
+
+        border-collapse: collapse;
+        margin: auto;
+        font-size: larger;
+        min-width: 40rem;
+        /* margin-top: 50px; */
+
+    }
+
+    table tr {
+        text-align: left;
+        font-weight: bold;
+        /* border-radius: 20px; */
+        border: 1px solid white;
+    }
+
+    table td {
+        padding: 12px 15px;
+    }
+</style>
+{% endblock %}
+{% block title %}
+Doctor Summary for patient
+{% endblock %}
+{% block content %}
+{% for content in patient %}
+<div class="container">
+    <div class="box">
+        <table>
+            <tr>
+                <td>
+                    <div class="item">
+                        <label>Illness: </label>
+                    </div>
+                </td>
+                <td>{{content.illness}}</td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="item">
+                        <label>Medication: </label>
+                    </div>
+                </td>
+                <td>{{content.medication}}</td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="item">
+                        <label>Dosage: </label>
+                    </div>
+                </td>
+                <td>{{content.dosage}}</td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="item">
+                        <label>Vaccination: </label>
+                    </div>
+                </td>
+                <td>{{content.vaccination}}</td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="item">
+                        <label>Treatment note: </label>
+                    </div>
+                </td>
+                <td>{{content.note}}</td>
+            </tr>
+        </table>
+
+    </div>
+</div>
+
+{% endfor %}
+{% endblock %}

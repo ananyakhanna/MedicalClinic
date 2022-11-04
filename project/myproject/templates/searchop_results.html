@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <!-- <link rel="stylesheet" href="../static/css/styleForm_searchip.css"> -->
+    <title>Outpatient Search Results: </title>
+    <style>
+        .table-content {
+            border-collapse: collapse;
+            margin: auto;
+            font-size: larger;
+            min-width: 80rem;
+            margin-top: 50px;
+        }
+
+        .table-content thead tr {
+            background-color: #009879;
+            color: white;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        .table-content th,
+        .table-content td {
+            padding: 12px 15px;
+        }
+
+        .title{
+            font-size: xx-large;
+            font-weight: bold;
+            font-style: italic;
+            margin-top: 2rem;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <ul class="nav_links">
+
+                <li> <a href="index.html">Home</a> </li>
+
+                <li> <a href="#">Registration</a>
+                    <ul class="drop_items">
+                        <li> <a href="ipreg.html">Inpatient Registration</a> </li>
+                        <li> <a href="opreg.html">Outpatient Registration</a> </li>
+                    </ul>
+                </li>
+
+                <li> <a href="#">Information</a>
+                    <ul class="drop_items">
+                        <li> <a href="docinfo.html">Doctor's Info</a> </li>
+                        <li> <a href="roominfo.html">Room's Info</a> </li>
+                    </ul>
+                </li>
+
+                <li> <a href="#">Billing</a>
+                    <ul class="drop_items">
+                        <li> <a href="ipbilling.html">Inpatient Billing</a> </li>
+                        <li> <a href="opbilling.html">Outpatient Billing</a> </li>
+                    </ul>
+                </li>
+
+                <li> <a href="pathology.html">Pathology</a> </li>
+
+                <li><a href="manage_appointments.html">Appointments</a></li>
+
+                <li> <a href="#">Search</a>
+                    <ul class="drop_items">
+                        <li> <a href="searchip.html">Inpatient Search</a> </li>
+                        <li> <a href="searchop.html">Outpatient Search</a> </li>
+                    </ul>
+                </li>
+
+            </ul>
+        </nav>
+    </header>
+
+
+    <div class="title">Search Results for "{{searchop}}": </div>
+    {% if searchop %}
+    <section>
+        <div class="table">
+
+            <table class="table-content">
+                <thead>
+                    <tr>
+                        <th>patientID</th>
+                        <th>name</th>
+                        <th>age</th>
+                        <th>contactNo</th>
+                        <th>date</th>
+                        <th>department</th>
+                        <th>docName</th>
+                        <th>gender</th>
+                    </tr>
+                </thead>
+                {% for searchop_results in searchop_results %}
+                <tr>
+                    <td>{{searchop_results.patientID}}</td>
+                    <td>{{searchop_results.name}}</td>
+                    <td>{{searchop_results.age}}</td>
+                    <td>{{searchop_results.contactNo}}</td>
+                    <td>{{searchop_results.date}}</td>
+                    <td>{{searchop_results.department}}</td>
+                    <td>{{searchop_results.docName}}</td>
+                    <td>{{searchop_results.gender}}</td>
+                </tr>
+
+                {% endfor %}
+            </table>
+        </div>
+    </section>
+    {% else %}
+    <h1 style="margin-top: 2rem;">NO DATA FOUND!</h1>
+    {% endif %}
+
+</body>
+
+</html>

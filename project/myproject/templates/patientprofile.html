@@ -1,0 +1,185 @@
+{% extends 'base_patient.html' %}
+
+{% block title %}
+Profile view/edit
+{% endblock %}
+
+{% block style %}
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+    }
+
+    body {
+        background: url('../static/Images/mc1.jpg') no-repeat center/cover;
+        background-attachment: fixed;
+    }
+
+    .container {
+        max-width: 50rem;
+        margin: 5rem auto;
+    }
+
+    .heading1 {
+        color: yellow;
+        text-align: center;
+        text-decoration: underline;
+    }
+
+    .box {
+        background-color: rgba(0, 0, 0, 0.5);
+        width: auto;
+        /* font-size: xx-large; */
+        border-radius: 15px;
+        color: #fff;
+        padding: 3rem;
+        /* padding-top: 4rem;
+    padding-bottom: 5rem; */
+    }
+
+    .label {
+        font-size: x-large;
+        font-family: sans-serif;
+        font-style: italic;
+        margin-bottom: 1rem;
+    }
+
+    input {
+        display: block;
+        background-color: rgba(0, 0, 0, 0.5);
+        border: 1px solid gray;
+        border-radius: 10px;
+        height: 3rem;
+        color: #fff;
+        font-size: large;
+        width: 100%;
+        margin-bottom: 2rem;
+    }
+
+    .button {
+        display: grid;
+        margin-top: 2rem;
+    }
+
+    .btn {
+        margin-top: 3rem;
+        margin-top: 3rem;
+        width: 10rem;
+        margin: auto;
+        height: 3rem;
+    }
+
+    .btn:hover {
+        cursor: pointer;
+        background-color: rgba(0, 0, 46, 0.815);
+    }
+
+    select {
+        margin-top: 0.5rem;
+        margin-bottom: 1rem;
+        display: block;
+        background-color: rgba(0, 0, 0, 0.5);
+        border: 1px solid gray;
+        border-radius: 10px;
+        height: 3rem;
+        color: #fff;
+        font-size: medium;
+        width: 100%;
+    }
+
+    /* The alert message box */
+    .containerAlert {
+        max-width: 50rem;
+        margin: auto;
+        margin-top: 1rem;
+    }
+
+    .alert {
+        padding: 0.5rem;
+        background-color: rgba(1, 145, 1, 0.5);
+        border-radius: 5px;
+        color: white;
+        margin-bottom: 15px;
+        height: 2.5rem;
+        font-size: larger;
+        width: 100%;
+    }
+
+    /* The close button */
+    .closebtn {
+        margin-left: 15px;
+        color: white;
+        font-weight: bold;
+        float: right;
+        font-size: 22px;
+        line-height: 20px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    /* When moving the mouse over the close button */
+    .closebtn:hover {
+        color: black;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+
+{% if status %}
+<div class="containerAlert">
+    <div class="alert">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        {{status}}
+    </div>
+</div>
+{% endif %}
+
+<div class="container">
+    <div class="box">
+        <div class="heading1">
+            <h1>Profile Edit</h1>
+        </div>
+        <form action="{% url 'patientprofile' %}" method="post">
+            {% csrf_token %}
+            <!-- <div>
+                <span class="label">Type: </span>
+                <select name="type">
+                    <option value="Inpatient">Inpatient</option>
+                    <option value="Outpatient">Outpatient</option>
+                </select>
+            </div> -->
+            <div class="input-box">
+                <span class="label">First Name: </span>
+                <input type="text" name="fname" placeholder="Enter First Name" value="{{user.first_name}}">
+            </div>
+            <div class="input-box">
+                <span class="label">Last Name: </span>
+                <input type="text" name="lname" placeholder="Enter Last Name" value="{{user.last_name}}">
+            </div>
+            <!-- <div class="input-box">
+                <span class="label">Email: </span>
+                <input type="email" name="email" placeholder="Enter email" value="{{appointment.email}}">
+            </div> -->
+            <div class="input-box">
+                <span class="label">Contact Number: </span>
+                <input type="text" name="contactno" placeholder="Enter Contact number" value="{{data.phone_number}}">
+                <!-- <input type="hidden" name="contactno" value=" -->
+            </div>
+            <div class="input-box">
+                <span class="label">City: </span>
+                <input type="text" name="location" placeholder="Enter city" value="{{data.location}}">
+            </div>
+            <!-- <div class="input-box">
+                <span class="label">Address: </span>
+                <input type="text" name="address" placeholder="Enter address" value="{{appointment.address}}">
+            </div> -->
+            <div class="button">
+                <input type="submit" value="Submit" class="btn">
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

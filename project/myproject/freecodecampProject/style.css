@@ -1,0 +1,93 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background: url('4.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+/* body{
+    background-color:gray ;
+} */
+.container{
+    /* border: 2px solid red; */
+    /* color: white; */
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    width: 30%;
+    
+}
+
+.container h1{
+    font-size: x-large;
+    margin-bottom: 2%;
+    padding: 3% 0%;
+    color: white;
+    text-align: center;
+}
+
+.container h1::after{
+    content: ""; 
+    display: block; 
+    margin: 0 auto; 
+    width: 50%; 
+    padding-top: 20px; 
+    border-bottom: 0.3rem solid yellow; 
+   
+}
+
+.box{
+    /* border: 2px solid purple; */
+    width: 100%;
+    /* padding: 10%; */
+    margin: 10% 0%;
+    border-bottom: 2px solid rgba(255, 255, 0, 0.473);
+}
+
+.box input{
+    width: 80%;
+    border: none;
+    outline: none;
+    color: grey;
+    margin: 5% 0%;
+    font-size: 1rem;
+    padding: 5%;
+    background: none;
+    text-align: center;
+    letter-spacing: 0.3rem;
+}
+
+.box i{
+    width: 5%;
+    text-align: center;
+    color: white;
+}
+
+.btn{
+    cursor: pointer;
+    outline: none;
+    width: 50%;
+    margin-top: 5%;
+    padding: 4%;
+    /* border-radius: 5%; */
+    /* border: 2px solid purple; */
+    background: none;
+    color: white;
+    font-weight: bold;
+    letter-spacing: 0.3rem;   
+}
+
+.button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.btn:hover{
+    color: yellow;
+    background: rgba(255, 255, 255, 0.051);   
+}

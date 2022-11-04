@@ -1,0 +1,128 @@
+{% extends 'base_patient.html' %}
+{% block style %}
+<style>
+    body {
+        background: url('../static/Images/mc3.jpg') no-repeat center/cover;
+        background-attachment: fixed;
+    }
+
+    .middle {
+        color: rgb(0, 31, 81);
+        font-family: sans-serif;
+        word-spacing: 1rem;
+        /* border: 2px solid black; */
+        height: 100vh;
+    }
+
+    h2 {
+        font-weight: lighter;
+        font-size: 3.5rem;
+    }
+
+    .heading2 {
+        border: 1px solid rgb(0, 31, 81);
+        height: 20rem;
+        width: 25rem;
+        margin-top: 5rem;
+        margin-left: 3rem;
+        padding: 2rem;
+        border-radius: 50px 0 50px 0;
+    }
+
+    footer {
+        background-color: black;
+        color: white;
+        text-align: center;
+        height: 3rem;
+        padding-top: 1rem;
+        /* border: 2px solid red; */
+    }
+
+    .endbar {
+        height: 80vh;
+        background-color: rgba(0, 31, 81, 0.847);
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: 33% 33% 33%;
+        /* border: 2px solid rebeccapurple; */
+        height: 50vh;
+        justify-content: center;
+        color: white;
+        margin-left: 1rem;
+    }
+
+    .sub-item {
+        margin-top: 5rem;
+        margin-bottom: 1rem;
+        font-size: 1.5rem;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+
+    .sub-item2 {
+        margin-top: 1.7rem;
+        font-size: 1.5rem;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+
+    .heading-h2-endbar {
+        font-weight: lighter;
+        font-size: 3.5rem;
+        padding-bottom: 0.7rem;
+        border-bottom: 1px solid white;
+        margin-top: 2rem;
+        font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+    .item{
+        margin-top: 3rem;
+    }
+</style>
+{% endblock %}
+{% block title %}
+Patient Home
+{% endblock %}
+{% block content %}
+{%if messages %}
+{% for message in messages %}
+<h3>{{message}}</h3>
+{% endfor %}
+{% endif %}
+<section class="middle">
+    <div class="heading2">
+        <h2>Dedicated to provide the best Health Care.</h2>
+    </div>
+</section>
+<section class="endbar">
+    <div class="container">
+        <div class="item">
+            <label class="heading-h2-endbar label-heading">Contact Us</label>
+            <div class="sub-item">
+                <span><strong> Tel:</strong> </span><span>123-456-7890</span>
+            </div>
+            <div class="sub-item2">
+                <span> <strong> Email:</strong> </span><span>info@mysite.com</span>
+            </div>
+
+        </div>
+        <div class="item">
+            <label class="heading-h2-endbar label-heading">Our Address</label>
+            <div class="sub-item">
+                <span>500 Terry Francois Street,<br><br>
+                    New Delhi, Delhi 94158</span>
+            </div>
+        </div>
+        <div class="item">
+            <label class="heading-h2-endbar label-heading">Opening Hours</label>
+            <div class="sub-item">
+                Monday - Saturday: 7:00am – 7:30pm
+                <br><br> Sunday: 7:00am – 4:30pm
+            </div>
+        </div>
+    </div>
+</section>
+<footer>
+    <h5>Copyright &copy; www.medicalclinic.com. All rights reserved! </h5>
+</footer>
+
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends 'base_doctor.html' %}
+
+{% block link %}
+<link rel="stylesheet" href="../static/css/styleManageApp.css">
+{% endblock %}
+
+{% block title %}
+{{title}}
+{% endblock %}
+
+{% block content %}
+{%if messages %}
+<center>
+    {% for message in messages %}
+    <h3 style="font-style:italic;">{{message}}</h3>
+    {% endfor %}
+</center>
+{% else %}
+<section class="body">
+    <div class="container">
+        {% for app in appointments %}
+        <div class="card box">
+            <h5 class="card-header">{{app.user.first_name}}</h5>
+            <div class="card-body">
+                <ul class="card-ul">
+                    <li class="card-li"><strong>Appointment Date: </strong>{{app.date}}</li>
+                    <li class="card-li" ><strong>Appointment Time: </strong> {{app.time}}</li>
+                </ul>
+                <p class="card-p">{{app.services}}</p>
+                <div class="card-h4">
+
+                    <h4 class="headingh4">Email:</h4><span> {{app.email}}</span><br>
+                    <h4 class="headingh4">Contact Number: </h4><span>{{app.contactno}}</span><br>
+                    <h4 class="headingh4">Sent Date: </h4><span>{{app.sent_date}}</span><br>
+                </div>
+                <strong>Accepted Date: </strong>{{app.accepted_date}}
+                {% if app.accepted == False %}
+                <form action="{% url 'manage_appointments' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <!-- <input type="datetime-local" name="datetime" placeholder="dd-mm-yyyy --:--"> -->
+                        <input type="hidden" name="appointment-id" value="{{app.id}}">
+                        <button type="submit" class="btn btn-primary" name="accept">Accept</button>
+                        <!-- <button type="submit" class="btn btn-primary" name="reject">Reject</button> -->
+                    </div>
+                </form>
+                {% endif %}
+
+            </div>
+            <!-- <br><br> -->
+        </div>
+    
+        {% endfor %}
+    </div>
+</section>
+
+{% endif %}
+{% endblock %}

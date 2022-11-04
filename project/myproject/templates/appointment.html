@@ -1,0 +1,211 @@
+{% extends 'base_patient.html' %}
+{% block link %}
+<!-- CSS only -->
+{% endblock %}
+{% block style %}
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+    }
+
+    body {
+        background: url('../static/Images/mc1.jpg') no-repeat center/cover;
+        background-attachment: fixed;
+    }
+
+    .container {
+        max-width: 70rem;
+        margin: 5rem auto;
+    }
+
+    .heading1 {
+        color: yellow;
+        text-align: center;
+        text-decoration: underline;
+    }
+
+    .box {
+        background-color: rgba(0, 0, 0, 0.5);
+        width: auto;
+        /* font-size: xx-large; */
+        border-radius: 15px;
+        color: #fff;
+        padding: 3rem;
+        /* padding-top: 4rem;
+            padding-bottom: 5rem; */
+    }
+
+    .label {
+        font-size: x-large;
+        font-family: sans-serif;
+        font-style: italic;
+        margin-bottom: 1rem;
+    }
+
+    input {
+        display: block;
+        background-color: rgba(0, 0, 0, 0.5);
+        border: 1px solid gray;
+        border-radius: 10px;
+        height: 3rem;
+        color: #fff;
+        font-size: large;
+        width: 100%;
+        margin-bottom: 2rem;
+    }
+
+    .button {
+        display: grid;
+        margin-top: 2rem;
+    }
+
+    .btn {
+        margin-top: 3rem;
+        margin-top: 3rem;
+        width: 10rem;
+        margin: auto;
+        height: 3rem;
+    }
+
+    .btn:hover {
+        cursor: pointer;
+        background-color: rgba(0, 0, 46, 0.815);
+    }
+
+    select {
+        margin-top: 0.5rem;
+        margin-bottom: 1rem;
+        display: block;
+        background-color: rgba(0, 0, 0, 0.5);
+        border: 1px solid gray;
+        border-radius: 10px;
+        height: 3rem;
+        color: #fff;
+        font-size: medium;
+        width: 100%;
+    }
+
+    /* The alert message box */
+    .containerAlert {
+        max-width: 50rem;
+        margin: auto;
+        margin-top: 1rem;
+    }
+
+    .alert {
+        padding: 0.5rem;
+        background-color: rgba(1, 145, 1, 0.5);
+        border-radius: 5px;
+        color: white;
+        margin-bottom: 15px;
+        height: 2.5rem;
+        font-size: larger;
+        width: 100%;
+    }
+
+    /* The close button */
+    .closebtn {
+        margin-left: 15px;
+        color: white;
+        font-weight: bold;
+        float: right;
+        font-size: 22px;
+        line-height: 20px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    /* When moving the mouse over the close button */
+    .closebtn:hover {
+        color: black;
+    }
+</style>
+
+{% endblock %}
+{% block title %}Appointment Form{% endblock %}
+{% block content %}
+
+{% for message in messages %}
+<div class="containerAlert">
+    <div class="alert">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        {{message}}
+    </div>
+    {% endfor %}
+</div>
+
+<div class="container">
+    <div class="box">
+        <h1 class="heading1">Appointment Form:</h1>
+        <form action="{% url 'appointment' %}" method="POST">
+            {% csrf_token %}
+            <div class="item">
+                <div class="label">
+                    <label for="type">Type: </label>
+                </div>
+                <select name="type" class="" required>
+                    <option value="" selected="selected">Select</option>
+                    <option value="Inpatient" class="form-control">Inpatient</option>
+                    <option value="Outpatient" class="form-control">Outpatient</option>
+                </select>
+            </div>
+            <div class="item">
+                <div class="label">
+                    <label>Contact Number:</label>
+                </div>
+                <input type="tel" name="contactno" required minlength="10" pattern="[0-9]{10}" title="Please enter only 10 Digits">
+            </div>
+            <div class="item">
+                <div class="label">
+                    <label>Email Address:</label>
+                </div>
+                <input type="email" name="email" required>
+            </div>
+            <div class="item">
+                <div class="label">
+                    <label>Address:</label>
+                </div>
+                <input type="text" name="address" required>
+            </div>
+            <div class="item">
+                <div class="label">
+                    <label>What date would work best for you ?</label>
+                </div>
+                <input type="date" name="date" required>
+            </div>
+            <div class="item">
+                <div class="label">
+                    <label>What time would work best for you ?</label>
+                </div>
+                <input type="time" name="time" required>
+            </div>
+            <div class="item">
+                <div class="label">
+                    <label>What service are you interested in ?</label>
+                </div>
+                <!-- <input type="text" name="services" class="form-control"> -->
+                <select name="services" required>
+                    <option value="" selected="selected">Select</option>
+                    <option value="Dermatology">Dermatology</option>
+                    <option value="Cardiology">Cardiology</option>
+                    <option value="Gastroenterology">Gastroenterology</option>
+                    <option value="Neurology">Neurology</option>
+                    <option value="Obsterics/Gynecology">Obsterics/Gynecology</option>
+                    <option value="Pediatrics">Pediatrics</option>
+                    <option value="Ophthalmology">Ophthalmology</option>
+                    <option value="Psychiatry">Psychiatry</option>
+                    <option value="Urology">Urology</option>
+                    <option value="Emergency medicine">Emergency medicine</option>
+
+                </select>
+
+            </div>
+            <div class="button">
+                <input type="submit" value="Submit" class="btn">
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

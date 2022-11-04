@@ -1,0 +1,189 @@
+{% extends 'base_doctor.html' %}
+{% block title %}Patient Status{% endblock %}
+{% block link %}
+<style>
+     * {
+        margin: 0;
+        padding: 0;
+        /* font-family: sans-serif; */
+    }
+
+    body {
+        background: url('../static/Images/mc1.jpg') no-repeat center/cover;
+        background-attachment: fixed;
+    }
+
+    .container {
+        max-width: 90rem;
+        margin: 5rem auto;
+    }
+
+    .box {
+        background-color: rgba(0, 0, 0, 0.5);
+        width: auto;
+        /* font-size: xx-large; */
+        border-radius: 15px;
+        color: #fff;
+        padding: 3rem;
+        /* padding-top: 4rem;
+            padding-bottom: 5rem; */
+    }
+    .table-content {
+        border-collapse: collapse;
+        margin: auto;
+        font-size: larger;
+        min-width: 80rem;
+        /* margin-top: 50px; */
+    }
+
+    .table-content thead tr {
+        background-color: yellow;
+        color: rgb(0, 31, 81);
+        text-align: left;
+        font-weight: bold;
+        border-radius: 20px;
+    }
+
+    .table-content th,
+    .table-content td {
+        padding: 12px 15px;
+    }
+
+    .title {
+        font-size: xx-large;
+        font-weight: bold;
+        font-style: italic;
+        margin-top: 2rem;
+        text-align: center;
+    }
+
+    .btn {
+        border: 1px solid gray;
+        border-radius: 2px;
+        background-color: white;
+        padding: 5px 5px;
+        margin: auto;
+        display: table;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-weight: bold;
+    }
+
+    .status_a {
+        text-decoration: none;
+        color: black;
+    }
+
+    /* The alert message box */
+    .containerAlert {
+        max-width: 50rem;
+        margin: auto;
+        margin-top: 1rem;
+    }
+
+    .alert {
+        padding: 0.5rem;
+        background-color: rgba(1, 145, 1, 0.5);
+        border-radius: 5px;
+        color: white;
+        margin-bottom: 15px;
+        height: 2.5rem;
+        font-size: larger;
+        width: 100%;
+    }
+
+    /* The close button */
+    .closebtn {
+        margin-left: 15px;
+        color: white;
+        font-weight: bold;
+        float: right;
+        font-size: 22px;
+        line-height: 20px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    /* When moving the mouse over the close button */
+    .closebtn:hover {
+        color: black;
+    }
+</style>
+
+{% endblock %}
+{% block content %}
+<!-- <div class="title">Search Results for: </div> -->
+
+{% for message in messages %}
+<div class="containerAlert">
+    <div class="alert">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        {{message}}
+    </div>
+    {% endfor %}
+</div>
+
+{% if appointments %}
+<section>
+    <div class="container">
+        <div class="box">
+
+            <div class="table">
+
+                <table class="table-content">
+                    <thead>
+                        <tr>
+                            <th>Patient Name</th>
+                            <th>Patient Type</th>
+                            <th>Service Requested</th>
+                            <th>Appointment Accepted</th>
+                            <th>Checkup Status</th>
+                            <th>Doctor Summery</th>
+                            <th>Bill</th>
+                        </tr>
+                    </thead>
+                    {% for appointments in appointments %}
+                    <tr>
+                        <td>{{appointments.user.first_name}}</td>
+                        <td>{{appointments.type}}</td>
+                        <td>{{appointments.services}}</td>
+                        <td>{{appointments.accepted}}</td>
+                        <td>
+                            {% if appointments.checkupstatus == False %}
+                            <form action="{% url 'doctorstatus' %}" method="POST">
+                                {% csrf_token %}
+                                <input type="hidden" name="appointment-id" value="{{appointments.id}}">
+                                <button type="submit" class="btn" style="cursor: pointer;">Checkup Done</button>
+                            </form>
+                            {% elif appointments.checkupstatus == True %}
+                            <button type="submit" class="btn" disabled="disabled">Checkup Done</button>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <!-- <form action="{% url 'doctorstatus' %}" method="POST"> -->
+                            <button type="submit" class="btn">
+                                <a href="{% url 'doctor_summary' %}?uid={{appointments.id}}" class="status_a">Doctor Summary</a>
+                            </button>
+                            <!-- <input type="hidden" name="userid" value="{{appointments.id}}"> -->
+                        </td>
+                        <td>
+                            {% if appointments.bill_generated == False %}
+                            <button type="submit" class="btn">
+                                <a href="{% url 'billing' %}?bid={{appointments.id}}" class="status_a">Generate Bill</a>
+                            </button>
+                            {% elif appointments.bill_generated == True %}
+                            <button type="submit" class="btn" disabled="disabled">Generate Bill</button>
+                            {% endif %}
+                        </td>
+                    </tr>
+
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+{% else %}
+<h1 style="margin-top: 2rem;">NO DATA FOUND!</h1>
+{% endif %}
+
+{% endblock %}

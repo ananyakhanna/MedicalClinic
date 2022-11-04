@@ -1,0 +1,99 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
+    <title>Register</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+        }
+
+        body {
+            background: url('../static/Images/mc1.jpg') no-repeat center/cover;
+            background-attachment: fixed;
+        }
+
+        .container{
+            max-width: 30rem;
+            margin: 10rem 3rem;
+        }
+
+        .box {
+            background-color: rgba(0, 0, 0, 0.5);
+            width: 100%;
+            /* font-size: xx-large; */
+            border-radius: 15px;
+            color: #fff;
+            padding: 2rem;
+            /* padding-top: 4rem;
+            padding-bottom: 5rem; */
+        }
+        
+        button {
+            border-radius: 20px;
+            text-align: center;
+            width: 100%;
+            height: 3rem;
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+
+        a {
+            text-decoration: none;
+            /* border: 2px solid red; */
+            display: block;
+            font-size: large;
+            color: #fff;
+
+        }
+
+        .label {
+            font-size:x-large;
+            text-align: center;
+            margin-bottom: 1rem;
+            /* border: 2px solid red; */
+        }
+        button:hover{
+            background-color: rgba(0, 0, 46, 0.815);
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    {% for message in messages %}
+    <h3>{{message}}</h3>
+    {% endfor %}
+
+    <div class="container">
+        <div class="box">
+            <div class="item">
+                <div class="label">
+                    <label>Register Here if you are a Patient:</label>
+                </div>
+                <div class="button">
+                    <button class="btn"><a href="patient_register.html">I am a Patient</a></button>
+                </div>
+            </div>
+
+            <br><br>
+            <div class="item">
+                <div class="label">
+                    <label>Register Here if you are a Doctor:</label>
+                </div>
+                <div class="button">
+                    <button class="btn"><a href="doctor_register.html">I am a Doctor</a></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

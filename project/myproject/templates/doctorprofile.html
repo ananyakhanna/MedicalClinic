@@ -1,0 +1,224 @@
+{% extends 'base_doctor.html' %}
+
+{% block style %}
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+    }
+
+    body {
+        background: url('../static/Images/mc1.jpg') no-repeat center/cover;
+        background-attachment: fixed;
+    }
+
+    .container {
+        max-width: 70rem;
+        margin: 5rem auto;
+    }
+
+    .box {
+        background-color: rgba(0, 0, 0, 0.5);
+        width: auto;
+        /* font-size: xx-large; */
+        border-radius: 15px;
+        color: #fff;
+        padding: 3rem;
+        /* padding-top: 4rem;
+            padding-bottom: 5rem; */
+    }
+
+    .label {
+        font-size: x-large;
+        font-family: sans-serif;
+        font-style: italic;
+        margin-bottom: 1rem;
+    }
+
+    input {
+        display: block;
+        background-color: rgba(0, 0, 0, 0.5);
+        border: 1px solid gray;
+        border-radius: 10px;
+        height: 3rem;
+        color: #fff;
+        font-size: large;
+        width: 100%;
+        margin-bottom: 2rem;
+    }
+
+    .button {
+        display: grid;
+        margin-top: 2rem;
+    }
+
+    .btn {
+        margin-top: 3rem;
+        margin-top: 3rem;
+        width: 10rem;
+        margin: auto;
+        height: 3rem;
+    }
+
+    .btn:hover {
+        cursor: pointer;
+        background-color: rgba(0, 0, 46, 0.815);
+    }
+
+    select {
+        margin-top: 0.5rem;
+        margin-bottom: 1rem;
+        display: block;
+        background-color: rgba(0, 0, 0, 0.5);
+        border: 1px solid gray;
+        border-radius: 10px;
+        height: 3rem;
+        color: #fff;
+        font-size: medium;
+        width: 100%;
+    }
+
+    /* The alert message box */
+    .containerAlert {
+        max-width: 50rem;
+        margin: auto;
+        margin-top: 1rem;
+    }
+
+    .alert {
+        padding: 0.5rem;
+        background-color: rgba(1, 145, 1, 0.5);
+        border-radius: 5px;
+        color: white;
+        margin-bottom: 15px;
+        height: 2.5rem;
+        font-size: larger;
+        width: 100%;
+    }
+
+    /* The close button */
+    .closebtn {
+        margin-left: 15px;
+        color: white;
+        font-weight: bold;
+        float: right;
+        font-size: 22px;
+        line-height: 20px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    /* When moving the mouse over the close button */
+    .closebtn:hover {
+        color: black;
+    }
+</style>
+{% endblock %}
+
+{% block title %}
+Doctor Profile view/edit
+{% endblock %}
+
+{% block content %}
+
+{% if status %}
+<div class="containerAlert">
+    <div class="alert">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        {{status}}
+    </div>
+</div>
+{% endif %}
+<div class="container">
+    <div class="box">
+
+        <form action="{% url 'doctorprofile' %}" method="post">
+            {% csrf_token %}
+
+            <div class="input-box">
+                <span class="label">First Name: </span>
+                <input type="text" name="fname" placeholder="Enter First Name" value="{{user.first_name}}">
+            </div>
+            <div class="input-box">
+                <span class="label">Last Name: </span>
+                <input type="text" name="lname" placeholder="Enter Last Name" value="{{user.last_name}}">
+            </div>
+            <div class="input-box">
+                <span class="label">Contact Number: </span>
+                <input type="text" name="contactno" placeholder="Enter Contact number" value="{{data.phone_number}}" pattern="[0-9]{10}" title="Please enter only 10 Digits">
+                <!-- <input type="hidden" name="contactno" value=" -->
+            </div>
+            <div class="input-box">
+                <span class="label">Speciality: </span>
+                <input type="hidden" placeholder="Enter speciality" value="{{data.speciality}}">
+                <select name="speciality" required>
+                    <!-- <option value="" selected="selected">Select</option> -->
+                    {% if data.speciality == 'Dermatology' %}
+                    <option value="Dermatology" selected>Dermatology</option>
+                    {% else %}
+                    <option value="Dermatology">Dermatology</option>
+                    {% endif %}
+
+                    {% if data.speciality == 'Cardiology' %}
+                    <option value="Cardiology" selected>Cardiology</option>
+                    {% else %}
+                    <option value="Cardiology">Cardiology</option>
+                    {% endif %}
+                    
+                    {% if data.speciality == 'Gastroenterology' %}
+                    <option value="Gastroenterology" selected>Gastroenterology</option>
+                    {% else %}
+                    <option value="Gastroenterology">Gastroenterology</option>
+                    {% endif %}
+
+                    {% if data.speciality == 'Neurology' %}
+                    <option value="Neurology" selected>Neurology</option>
+                    {% else %}
+                    <option value="Neurology">Neurology</option>
+                    {% endif %}
+
+                    {% if data.speciality == 'Obsterics/Gynecology' %}
+                    <option value="Obsterics/Gynecology" selected>Obsterics/Gynecology</option>
+                    {% else %}
+                    <option value="Obsterics/Gynecology">Obsterics/Gynecology</option>
+                    {% endif %}
+
+                    {% if data.speciality == 'Pediatrics' %}
+                    <option value="Pediatrics" selected>Pediatrics</option>
+                    {% else %}
+                    <option value="Pediatrics">Pediatrics</option>
+                    {% endif %}
+
+                    {% if data.speciality == 'Ophthalmology' %}
+                    <option value="Ophthalmology" selected>Ophthalmology</option>
+                    {% else %}
+                    <option value="Ophthalmology">Ophthalmology</option>
+                    {% endif %}
+
+                    {% if data.speciality == 'Psychiatry' %}
+                    <option value="Psychiatry" selected>Psychiatry</option>
+                    {% else %}
+                    <option value="Psychiatry">Psychiatry</option>
+                    {% endif %}
+
+                    {% if data.speciality == 'Urology' %}
+                    <option value="Urology" selected>Urology</option>
+                    {% else %}
+                    <option value="Urology">Urology</option>
+                    {% endif %}
+
+                    {% if data.speciality == 'Emergency medicine' %}
+                    <option value="Emergency medicine" selected>Emergency medicine</option>
+                    {% else %}
+                    <option value="Emergency medicine">Emergency medicine</option>
+                    {% endif %}
+                </select>
+            </div>
+            <div class="button">
+                <input type="submit" value="Submit" class="btn">
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

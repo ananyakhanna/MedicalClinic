@@ -1,0 +1,247 @@
+{% if is_paginated %}
+    <section>
+
+        <div class="wrapper">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    {% if page_obj.has_previous %}
+                    <li class="page-item"><a href="?page={{page_obj.previous_page_number}}"
+                            class="page-link">Previous</a></li>
+                    {% endif %}
+                    {% for number in page_obj.paginator.page_range %}
+                    <li class="page-item"><a href="?page={{number}}" class="page-link">{{number}}</a></li>
+                    {% endfor %}
+                    {% if page_obj.has_next %}
+                    <li class="page-item"><a href="?page={{page_obj.previous_page_number}}" class="page-link">Next</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    </section>
+    {% endif %}
+
+
+    # def appointment(request):
+# #     if request.method == 'POST':
+# #         name = request.POST['name']
+# #         contactno = request.POST['contactno']
+# #         email = request.POST['email']
+# #         address = request.POST['address']
+# #         date = request.POST['date']
+# #         time = request.POST['time']
+# #         services = request.POST['services']
+#     return render(request, 'appointment.html', {})
+
+#     if request.method == 'POST':
+#         # form = Register(request.POST)
+#         username = request.POST['username']
+#         email = request.POST['email']
+#         password1 = request.POST['password1']
+#         password2 = request.POST['password2']
+        
+#         if password1 == password2:
+#             if User.objects.filter(email=email).exists():
+#                 messages.info(request, 'Email already used')
+#                 return redirect('register.html')
+#             else:
+#                 user = User.objects.create_user(username=username, email=email, password=password1)
+#                 # if form.is_valid():
+#                 #     user = form.save()
+#                 # else:
+#                 #     print("Error in form")
+#                 # user.save()
+#                 user.save()
+#                 user.username = username
+#                 messages.success(request, "Your account has been created successfully.")
+#                 return redirect('login.html')
+#         else:
+#             messages.info(request, 'Password not the same')
+#             return redirect('register.html')
+#     else:
+#         # form = Register()
+
+# def auth_login(request):
+#     if request.method == 'POST':
+#         username = request.POST['username']
+#         password1 = request.POST.get('password1')
+
+#         user = authenticate(username=username, password=password1)
+
+#         if user is not None:
+#             login(request, user)
+#             username = user.username
+#             messages.success(request, "You have been successfully logged in.")
+#             return render(request, 'index.html', {'username': username, 'password1': password1})
+#         else:
+#             messages.error(request, 'Credentials invalid')
+#             return redirect('login.html')
+#     else:
+#         return render(request, 'login.html')
+
+# def get_id(request, appointment_id1):
+    #     appointment_id = request.POST.get('appointment-id')
+    #     appointment = Appointment.objects.get(id=appointment_id)
+        
+    #     if appointment_id1 == appointment:
+    #         messages.add_message(request, messages.SUCCESS, f"Your appointment has been booked on {appointment.date}.")
+
+
+{% if user.is_authenticated %}
+    <h1>Hello {{form.first_name}}</h1>
+    {% endif %}
+
+
+
+     <!-- <div class="container">
+      
+        <form action="{% url 'register' %}" method="POST">
+            
+            {% csrf_token %}
+            <div class="box">
+                <label>Name: </label>
+                <input type="text" name="username">
+            </div>
+            <div class="box">
+                <label>Email: </label>
+                <input type="email" name="email">
+            </div>
+            <div class="box">
+                <label>Password: </label>
+                <input type="password" name="password1">
+            </div>
+            <div class="box">
+                <label>Confirm Password: </label>
+                <input type="password" name="password2">
+            </div>
+            <div class="box">
+                <label for="id_is_admin">Admin</label>
+                 <input type="checkbox" name="is_admin">
+                {{ form.is_admin }}
+            </div>
+            <div class="box">
+                <label for="id_is_user">User</label>
+                <input type="checkbox" name="is_user">
+                {{form.is_user}}
+            </div>
+            <div class="box">
+                <label for="id_is_doctor">Doctor</label>
+                <input type="checkbox" name="is_doctor">
+                {{form.is_doctor}}
+            </div>
+
+            <div class="button">
+                <button type="submit">Register</button>
+            </div>
+        </form>
+    </div> -->
+
+
+    <!-- <style>
+    .message{
+        border: 2px solid black;
+    }
+</style>
+<div class="message">
+{% if messages %}
+
+    <center>
+        {% for message in messages %}
+        <h3 style="font-style:italic;" class="heading">{{message}}</h3>
+        {% endfor %}
+    </center>
+    {% endif %}
+    
+    {% for app in appoint %}
+    {% if app.accepted == True %}
+    <center>
+        <h3 style="font-style:italic;">{{app.user.first_name}}, Your appointment for <strong>{{app.services}}</strong>,
+            has been accepted on {{app.accepted_date}}</h3>
+            <h4 style="font-style:italic;">Timings are: {{app.date}} at <span
+                style="text-transform: uppercase;">{{app.time}}</span></h4>
+            </center>
+            
+            {% endif %}
+            {% endfor %}
+            
+</div> -->
+
+
+<!-- <ul class="drop_items">
+                        <li> <a href="ipreg.html">Inpatient Registration</a> </li>
+                        <li> <a href="opreg.html">Outpatient Registration</a> </li>
+                    </ul> -->
+
+<!-- <ul class="drop_items">
+                        <li> <a href="docinfo.html">Doctor's Info</a> </li>
+                        <li> <a href="roominfo.html">Room's Info</a> </li>
+                    </ul> -->
+
+
+                <!-- <li> <a href="pathology.html">Pathology</a> </li> -->
+
+                <!-- <li><a href="manage_appointments.html">Appointments</a></li> -->
+
+ <!-- <ul class="drop_items">
+                        <li> <a href="searchip.html">Inpatient Search</a> </li>
+                        <li> <a href="searchop.html">Outpatient Search</a> </li>
+                    </ul> -->
+
+
+                <!-- <li> <a href="billing.html">Billing</a> -->
+                    <!-- <ul class="drop_items">
+                        <li> <a href="ipbilling.html">Inpatient Billing</a> </li>
+                        <li> <a href="opbilling.html">Outpatient Billing</a> </li>
+                    </ul> -->
+
+    <!-- <section class="usertype">
+        <div>
+            <label for="usertype">user type</label>
+            <select name="usertype" id="usertype">
+                <option value="Admin">Admin</option>
+                <option value="Doctor">Doctor</option>
+                <option value="User">User</option>
+            </select>
+        </div>
+    </section>
+{% if usertype %}
+    <section >
+        <label for="signup"></label>
+    </section>
+{% endif %} -->
+
+
+# def billing(request):
+#     # patientUserDetail = models.User.objects.filter(is_patient=1)
+#     # print(patientUserDetail)
+#     # context = {'patient': patientUserDetail}
+#     bid = request.GET['bid']
+#     print(bid)
+#     context = {}
+#     patientAppointmentDetails = Appointment.objects.get(id=bid)
+#     context["appointment"] = patientAppointmentDetails
+#     # print(patientAppointmentDetails.user_id)
+#     userid = patientAppointmentDetails.user_id
+#     dataP = Patient.objects.get(user_id=userid)
+#     context["data"] = dataP
+
+#     # saving data to database
+#     if request.method == 'POST':
+#         billNo = request.POST['billNo']
+#         name = request.POST['name']
+#         contactno = request.POST['contactno']
+#         location = request.POST['location']
+#         doa = request.POST['doa']
+#         consultationFee = request.POST['consultationFee']
+#         docFee = request.POST['docFee']
+#         miscCharge = request.POST['miscCharge']
+#         # total = consultationFee+docFee+miscCharge
+#         total = request.POST['total']
+#         # context['total'] = total
+#         new_bill = Billing(billNo = billNo, name = name, contactno = contactno, location = location, doa = doa, consultationFee = consultationFee, docFee = docFee, miscCharge = miscCharge, total = total)
+#         new_bill.save()
+
+#         # return redirect('doctorstatus.html')
+#     return render(request, 'billing.html', context)
+
+
